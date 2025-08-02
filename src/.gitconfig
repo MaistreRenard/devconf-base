@@ -1,0 +1,9 @@
+[user]
+	name = Nicoco
+	email = nicolas.wirth7@gmail.com
+[credential]
+	helper = store
+[core]
+	editor = vim
+[format]
+	signoff = true
