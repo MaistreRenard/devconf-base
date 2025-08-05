@@ -89,6 +89,7 @@ sudo apt install -y fontconfig
 
 echo "   → Creating fonts directory..."
 # Create fonts directory if it doesn't exist
+sudo rm -rf ~/.local/share/fonts/
 mkdir -p ~/.local/share/fonts
 
 echo "   → Downloading and extracting font..."
@@ -118,15 +119,20 @@ echo ""
 # =============================================================================
 echo "⚡ Step 7/7: Setting up configurations..."
 
+DOTFILES_DIR="$HOME/devconf-base"
+
 echo "   → Configuring Git..."
 # Remove existing git config and clone new one
 sudo rm -rf ~/.gitconfig
-rsync -P ./src/.gitconfig ~/.gitconfig
+# rsync -P ./src/.gitconfig ~/.gitconfig
+ln -sf "$DOTFILES_DIR/src/.gitconfig" ~/.gitconfig
 
 echo "   → Configuring Neovim..."
 # Remove existing Neovim config and clone new one
 sudo rm -rf ~/.config/nvim
-git clone git@github.com:MaistreRenard/devconf-neovim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
+sudo rm -rf ~/.local/share/nvim/
+# git clone git@github.com:MaistreRenard/devconf-neovim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
+ln -sf "$DOTFILES_DIR/src/.config/nvim" ~/.config/nvim
 
 echo "   → Setting up Zsh with Oh My Zsh..."
 # Install Oh My Zsh (suppress output to avoid installation prompts)
@@ -138,10 +144,17 @@ echo "   → Installing Powerlevel10k theme..."
 sudo rm -rf ~/powerlevel10k
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 
+echo "   → Installing zsh-syntax-highlighting plugin..."
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+echo "   → Installing zsh-autosuggestions plugin..."
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
 echo "   → Configuring Git..."
 # Remove existing git config and clone new one
 sudo rm -rf ~/.zshrc
-rsync -P ./src/.zshrc ~/.zshrc
+# rsync -P ./src/.zshrc ~/.zshrc
+ln -sf "$DOTFILES_DIR/src/.zshrc" ~/.zshrc
 
 echo "✅ All configurations set up successfully"
 echo ""
