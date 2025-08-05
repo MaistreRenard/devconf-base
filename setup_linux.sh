@@ -89,6 +89,7 @@ sudo apt install -y fontconfig
 
 echo "   → Creating fonts directory..."
 # Create fonts directory if it doesn't exist
+sudo rm -rf ~/.local/share/fonts/
 mkdir -p ~/.local/share/fonts
 
 echo "   → Downloading and extracting font..."
