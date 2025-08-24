@@ -68,29 +68,11 @@ $msysPath = "C:\msys64\usr\bin\bash.exe"
 & $msysPath -lc "pacman -Su --noconfirm"
 
 # Install GCC and Make
-<<<<<<< HEAD
-<<<<<<< HEAD
 & $msysPath -lc "pacman -S --noconfirm mingw-w64-x86_64-gcc mingw-w64-x86_64-make mingw-w64-x86_64-ripgrep"
 Copy-Item "C:\msys64\mingw64\bin\mingw32-make.exe" "C:\msys64\mingw64\bin\make.exe"
-
 
 [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\msys64\mingw64\bin", "User")
 [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files (x86)\GnuWin32\bin", "User")
 [Environment]::SetEnvironmentVariable("Path", $env:Path + ";$env:LOCALAPPDATA\Programs\ripgrep", "User")
 
-=======
->>>>>>> 4e96298 (Add windows support)
-=======
-& $msysPath -lc "pacman -S --noconfirm mingw-w64-x86_64-gcc mingw-w64-x86_64-make"
-=======
-& $msysPath -lc "pacman -S --noconfirm mingw-w64-x86_64-gcc mingw-w64-x86_64-make mingw-w64-x86_64-ripgrep"
->>>>>>> 4daa84d (Fix ripgrep)
-Copy-Item "C:\msys64\mingw64\bin\mingw32-make.exe" "C:\msys64\mingw64\bin\make.exe"
-
-
-[Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\msys64\mingw64\bin", "User")
-[Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files (x86)\GnuWin32\bin", "User")
-[Environment]::SetEnvironmentVariable("Path", $env:Path + ";$env:LOCALAPPDATA\Programs\ripgrep", "User")
-
->>>>>>> 8dc7dca (Install compiler on Windows)
 Write-Host "[INFO] Setup complete!"
