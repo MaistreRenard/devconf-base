@@ -1,0 +1,9 @@
+[user]
+	name = Nicolas Wirth
+	email = 116091834+MaistreRenard@users.noreply.github.com
+[credential]
+	helper = store
+[core]
+	editor = vim
+[format]
+	signoff = true
