@@ -1,6 +1,6 @@
 [user]
 	name = Nicolas Wirth
-	email = 116091834+MaistreRenard@users.noreply.github.com
+	email = nicolas.wirth@speedgoat.ch
 [credential]
 	helper = store
 [core]
@@ -9,3 +9,5 @@
 	signoff = true
 [push]
 	autoSetupRemote = true
+[http]
+	sslVerify = false
