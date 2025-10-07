@@ -28,35 +28,54 @@ echo ""
 # =============================================================================
 # System Update
 # =============================================================================
-echo "📦 Step 1/7: Updating system packages..."
+echo "📦 Step 1: Updating system packages..."
 echo "   → Running apt update and upgrade..."
 sudo apt update && sudo apt upgrade -y
 echo "✅ System packages updated successfully"
 echo ""
 
 # =============================================================================
-# Core Development Tools
+# Development Tools
 # =============================================================================
-echo "🔧 Step 2/7: Installing core development tools..."
-echo "   → Installing git, fzf, neovim, tig, tmux..."
-sudo apt install -y git fzf neovim tig tmux python3.10-venv
-echo "✅ Core development tools installed successfully"
+echo "🔧 Step 2: Installing development tools..."
+echo "   → Installing git, fzf, tig, tmux..."
+sudo apt install -y 	bpytop git fzf ranger rsync \
+			tig tree tmux python3.10-venv zsh
+echo "✅ Development tools installed successfully"
 echo ""
 
 # =============================================================================
-# Neovim Dependencies
+# JetBrains Mono Nerd Font Installation
 # =============================================================================
-echo "⚙️  Step 3/7: Installing Neovim dependencies..."
+echo "🔤 Step 3: Installing JetBrains Mono Nerd Font..."
+echo "   → Installing fontconfig..."
+sudo apt install -y fontconfig
+
+echo "   → Creating fonts directory..."
+# Create fonts directory if it doesn't exist
+sudo rm -rf ~/.local/share/fonts/
+mkdir -p ~/.local/share/fonts
+
+echo "   → Downloading and extracting font..."
+# Download and install JetBrains Mono Nerd Font
+curl -fLo "JetBrainsMono.zip" https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
+unzip -o JetBrainsMono.zip -d ~/.local/share/fonts/
+rm JetBrainsMono.zip
+
+echo "   → Refreshing font cache..."
+# Refresh font cache
+fc-cache -f -v > /dev/null 2>&1
+echo "✅ JetBrains Mono Nerd Font installed successfully"
+echo ""
+
+# =============================================================================
+# Neovim setup
+# =============================================================================
+echo "⚙️ Step 4: Install Neovim..."
 echo "   → Installing build tools and utilities..."
 sudo apt install -y fd-find fonts-noto-color-emoji
 sudo apt install -y make gcc ripgrep unzip xclip curl
-echo "✅ Neovim dependencies installed successfully"
-echo ""
 
-# =============================================================================
-# Neovim Installation (Latest Version)
-# =============================================================================
-echo "📝 Step 4/7: Installing latest Neovim..."
 echo "   → Downloading latest Neovim release..."
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
 
@@ -81,43 +100,9 @@ echo "✅ Latest Neovim installed successfully"
 echo ""
 
 # =============================================================================
-# JetBrains Mono Nerd Font Installation
-# =============================================================================
-echo "🔤 Step 5/7: Installing JetBrains Mono Nerd Font..."
-echo "   → Installing fontconfig..."
-sudo apt install -y fontconfig
-
-echo "   → Creating fonts directory..."
-# Create fonts directory if it doesn't exist
-sudo rm -rf ~/.local/share/fonts/
-mkdir -p ~/.local/share/fonts
-
-echo "   → Downloading and extracting font..."
-# Download and install JetBrains Mono Nerd Font
-curl -fLo "JetBrainsMono.zip" https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
-unzip -o JetBrainsMono.zip -d ~/.local/share/fonts/
-rm JetBrainsMono.zip
-
-echo "   → Refreshing font cache..."
-# Refresh font cache
-fc-cache -f -v > /dev/null 2>&1
-echo "✅ JetBrains Mono Nerd Font installed successfully"
-echo ""
-
-# =============================================================================
-# Environment and Utility Tools
-# =============================================================================
-echo "🌍 Step 6/7: Installing environment and utility tools..."
-echo "   → Installing file manager, shell, and monitoring tools..."
-sudo apt install -y ranger tree zsh
-sudo apt install -y bpytop rsync
-echo "✅ Environment and utility tools installed successfully"
-echo ""
-
-# =============================================================================
 # Configuration Setup
 # =============================================================================
-echo "⚡ Step 7/7: Setting up configurations..."
+echo "⚡ Step 5: Setting up configurations..."
 
 DOTFILES_DIR="$HOME/devconf-base"
 
