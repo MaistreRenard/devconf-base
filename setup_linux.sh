@@ -100,6 +100,27 @@ echo "✅ Latest Neovim installed successfully"
 echo ""
 
 # =============================================================================
+# Lazy TUI setup
+# =============================================================================
+echo "⚙️ Step 4: Install lazy TUI tools..."
+echo "   → Installing lazygit..."
+LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
+curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+tar xf lazygit.tar.gz lazygit
+sudo install lazygit -D -t /usr/local/bin/
+rm -r lazygit lazygit.tar.gz
+
+echo "   → Installing lazyssh..."
+LATEST_TAG=$(curl -fsSL https://api.github.com/repos/Adembc/lazyssh/releases/latest | jq -r .tag_name)
+curl -LJO "https://github.com/Adembc/lazyssh/releases/download/${LATEST_TAG}/lazyssh_$(uname)_$(uname -m).tar.gz"
+tar -xzf lazyssh_$(uname)_$(uname -m).tar.gz lazyssh
+sudo mv lazyssh /usr/local/bin/
+rm -r lazyssh_$(uname)_$(uname -m).tar.gz
+
+echo "✅ Lazygit, lazyssh installed successfully"
+echo ""
+
+# =============================================================================
 # Configuration Setup
 # =============================================================================
 echo "⚡ Step 5: Setting up configurations..."
