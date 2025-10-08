@@ -130,14 +130,12 @@ DOTFILES_DIR="$HOME/devconf-base"
 echo "   → Configuring Git..."
 # Remove existing git config and clone new one
 sudo rm -rf ~/.gitconfig
-# rsync -P ./src/.gitconfig ~/.gitconfig
 ln -sf "$DOTFILES_DIR/src/.gitconfig" ~/.gitconfig
 
 echo "   → Configuring Neovim..."
 # Remove existing Neovim config and clone new one
 sudo rm -rf ~/.config/nvim
 sudo rm -rf ~/.local/share/nvim/
-# git clone git@github.com:MaistreRenard/devconf-neovim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
 ln -sf "$DOTFILES_DIR/src/.config/nvim" ~/.config/nvim
 
 echo "   → Setting up Zsh with Oh My Zsh..."
@@ -156,10 +154,9 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 echo "   → Installing zsh-autosuggestions plugin..."
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-echo "   → Configuring Git..."
-# Remove existing git config and clone new one
+echo "   → Configuring Zsh..."
+# Remove existing zsh config
 sudo rm -rf ~/.zshrc
-# rsync -P ./src/.zshrc ~/.zshrc
 ln -sf "$DOTFILES_DIR/src/.zshrc" ~/.zshrc
 
 echo "✅ All configurations set up successfully"
