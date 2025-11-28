@@ -7,3 +7,5 @@
 	editor = vim
 [format]
 	signoff = true
+[push]
+	autoSetupRemote = true
