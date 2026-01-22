@@ -39,7 +39,7 @@ echo ""
 # =============================================================================
 echo "🔧 Step 2: Installing development tools..."
 echo "   → Installing git, fzf, tig, tmux..."
-sudo apt install -y 	bpytop git fzf ranger rsync \
+sudo apt install -y 	bpytop duf git fzf ranger rsync \
 			tig tree tmux python3.10-venv zsh
 echo "✅ Development tools installed successfully"
 echo ""
